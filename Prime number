@@ -1,0 +1,45 @@
+            while(true)
+            {
+                Console.Write("number:");
+                string s = Console.ReadLine();
+                int number;
+                bool b = true;
+                if (int.TryParse(s, out number))
+                {
+                    if (number == 2) b = true;
+                    else if (number % 2 == 0 || number <= 1) b = false;
+                    else for (int i = 3; i <= Math.Floor(Math.Sqrt(number)); i += 2)
+                            if (number % i == 0)
+                            {
+                                b = false; break;
+                            }
+                    if (b)
+                    {
+                        bool b2 = true;
+                        int n=number+1;
+                        while (n != 1)
+                        {
+                            n = n / 2;
+                            if (n % 2 != 0 && n != 1) { b2 = false; }
+                        }
+                        if (!b2)
+                        {
+                            n = number - 1;
+                            b2 = true;
+                            while (n != 1)
+                            {
+                                n = n / 2;
+                                if (n % 2 != 0 && n != 1) { b2 = false; }
+                            }
+                        }
+                        if (b2)  Console.WriteLine("the number is Mresenne prime number!"); else Console.WriteLine("the number is regular prime number!");
+                        
+                    }
+                    else Console.WriteLine("the number is not prime number!");
+                }
+                else
+                {
+                    if (s.Equals("quit")) Environment.Exit(0);
+                    else Console.WriteLine("this is not a number!");
+                }
+            }
